@@ -1,0 +1,59 @@
+#edit-mode: -*- python -*-
+#coding:utf-8
+
+WORKROOT('../../../')
+
+CopyUsingHardLink(True)
+
+#ENABLE_MULTI_LIBS(True)
+
+CPPFLAGS('-D_GNU_SOURCE -D__STDC_LIMIT_MACROS -DVERSION=\\\"1.9.8.7\\\"')
+#CPPFLAGS_32('-D_XOPEN_SOURE=500')
+
+#C编译参数.
+CFLAGS('-g -pipe -W -Wall -fPIC')
+
+#C++编译参数.
+CXXFLAGS('-g -pipe -W -Wall -fPIC')
+
+#头文件路径.
+INCPATHS('. ./include ./output ./output/include ./thirdpart/log4c/include/')
+
+#使用库
+#LIBS('./libFlash.a')
+
+#链接参数.
+LDFLAGS('-lpthread -lcrypto -lrt -lexpat')
+
+#依赖模块
+#CONFIGS('lib2-64/ullib')
+CONFIGS('public/sofa-pbrpc@trunk@comake')
+CONFIGS('third-64/gtest@1.6.0.100')
+CONFIGS('third-64/gflags@gflags_2-0-0-100_PD_BL')
+CONFIGS('third-64/glog@0.3.3.100')
+
+
+common_sources='common/util/time_debuger.cc common/thread/thread_pool.cc'
+common_headers='common/util/log.h \
+               common/util/noncopyable.h \
+               common/util/time_debuger.h \
+               common/thread/mutex.h \
+               common/thread/condition.h \
+               common/thread/asm_atomic.h \
+               common/thread/spin.h \
+               common/thread/thread.h \
+               common/thread/thread_pool.h'
+
+common_test_sources='test/commonlib_test.cc'
+user_sources=''
+user_headers=''
+
+#可执行文件
+Application('commonlib_test',Sources(common_test_sources), Libraries('./libcommonlib.a ./thirdpart/log4c/lib/liblog4c.a'))
+#静态库
+StaticLibrary('commonlib',Sources(common_sources),HeaderFiles(common_headers))
+#共享库
+#SharedLibrary('Flash',Sources(user_sources),HeaderFiles(user_headers))
+#子目录
+#Directory('demo')
+

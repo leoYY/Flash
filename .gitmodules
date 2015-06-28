@@ -1,0 +1,3 @@
+[submodule "thirdpart/log4c"]
+	path = thirdpart/log4c
+	url = https://github.com/leoYY/log4c_Promotions.git
