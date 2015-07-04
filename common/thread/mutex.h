@@ -50,6 +50,7 @@ public:
                 timer.ResetInfo(wait_info); 
             }
 #endif
+        NOT_USED(wait_info);
         int err = pthread_mutex_lock(&_mutex); 
         if (err != 0) {
             FATAL_LOG(
@@ -99,6 +100,7 @@ public:
             _locked_timer->ResetInfo(locked_info);
         }
 #endif
+        NOT_USED(locked_info);
     }
 
     ~MutexScoped() {

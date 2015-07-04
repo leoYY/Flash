@@ -49,6 +49,7 @@ public:
             timer.ResetInfo(wait_info); 
         }
 #endif
+        NOT_USED(wait_info);
         int err = pthread_cond_wait(&_cond, _mutex.PthreadMutex()); 
         if (err != 0) {
             WARNING_LOG(
@@ -72,6 +73,7 @@ public:
             timer.ResetInfo(wait_info); 
         }
 #endif
+        NOT_USED(wait_info);
         struct timespec now; 
         clock_gettime(CLOCK_REALTIME, &now);
         

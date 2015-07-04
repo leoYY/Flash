@@ -9,6 +9,10 @@
 
 #include "common/util/noncopyable.h"
 
+#define NOT_USED(x) do { \
+    x = x; \
+} while(0)
+
 namespace common {
 namespace util {
 
